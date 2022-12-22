@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="myModal" class="modal fade modal-timer">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+          </div>
+          <div class="modal-body">
+            <h2 class="modal-title text-center m-auto">
+              Don't Leave Until You Talk to a Lawyer!
+            </h2>
+            <p>
+              Find out what rights you have and how much your case is worth. It
+              only takes 2 minutes!
+            </p>
+            <h3 class="text-center" id="time">5:00</h3>
+            <a href="tel:(562) 600-0807">Call Us (562) 600-0807</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      // Instant Popup On Load
+      document.addEventListener("DOMContentLoaded", (event) => {
+        let bodyselector = document.querySelector("body");
+        let popupModal = document.querySelector("#myModal");
+        var count = 0;
+        var something = (function () {
+          var executed = false;
+          if (executed == false) {
+            popupModal.classList.remove("show");
+          }
+          return function () {
+            if (!executed) {
+              executed = true;
+              console.log("Runnning!");
+              popupModal.classList.add("show");
+              // Call Bootstrap Popup Modal Function
+              $("#myModal").modal("show");
+            }
+          };
+        })();
+        bodyselector.addEventListener("mouseleave", (event) => {
+          something();
+        });
+
+        window.addEventListener("load", (event) => {
+          // Call Bootstrap Popup Modal Function
+          $("#myModal").modal("hide");
+        });
+      });
+    </script>
+  </body>
+</html>
